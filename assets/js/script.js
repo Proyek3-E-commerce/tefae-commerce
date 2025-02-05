@@ -142,7 +142,7 @@ function validateLogin(event) {
         if (data.role === "admin") {
           window.location.href = "Admin-Dashboard/index.html";
         } else if (data.role === "seller") {
-          window.location.href = "penjual-dashboard/index.html";
+          window.location.href = "Penjual-Dashboard/index.html";
         } else {
           window.location.href = "index.html";
         }
