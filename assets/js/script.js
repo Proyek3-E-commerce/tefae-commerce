@@ -140,7 +140,7 @@ function validateLogin(event) {
 
         // Redirect based on role
         if (data.role === "admin") {
-          window.location.href = "admin-dashboard/index.html";
+          window.location.href = "Admin-Dashboard/index.html";
         } else if (data.role === "seller") {
           window.location.href = "penjual-dashboard/index.html";
         } else {
