@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Dashboard</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="container">
+      <aside>
+         <div class="top">
+           <div class="logo">
+             <h2>G <span class="success">LOWING</span></h2>
+           </div>
+           <div class="close" id="close_btn">
+            <span class="material-symbols-sharp">close</span>
+           </div>
+         </div>
+         <div class="sidebar">
+            <a href="#" id="nav-dashboard" class="active">
+              <span class="material-symbols-sharp">grid_view</span>
+              <h3>Dashboard</h3>
+           </a>
+           <a href="manage_product.html" id="nav-products">
+            <span class="material-symbols-sharp">inventory_2</span>
+            <h3>Manage Products</h3>
+          </a>
+          <a href="orders.html" id="nav-orders">
+            <span class="material-symbols-sharp">shopping_cart</span>
+            <h3>Orders</h3>
+          </a>
+          <a href="#" id="logout-link">
+            <span class="material-symbols-sharp">logout</span>
+            <h3>Logout</h3>
+          </a>          
+         </div>
+      </aside>
+
+      <!-- Dashboard -->
+      <main id="dashboard-content">
+           <h1>Seller Dashboard</h1>
+           <div class="insights">
+               <div class="sales">
+                  <span class="material-symbols-sharp">trending_up</span>
+                  <div class="middle">
+                    <div class="left">
+                      <h3>Total Sales</h3>
+                      <h1 id="total-sales">Rp 0</h1>
+                    </div>
+                  </div>
+                  <small>Last 7 Days</small>
+               </div>
+               <div class="orders">
+                   <span class="material-symbols-sharp">shopping_bag</span>
+                   <div class="middle">
+                     <div class="left">
+                       <h3>Pending Orders</h3>
+                       <h1 id="pending-orders">0</h1>
+                     </div>
+                   </div>
+                   <small>Today</small>
+                </div>
+                <div class="revenue">
+                   <span class="material-symbols-sharp">monetization_on</span>
+                   <div class="middle">
+                     <div class="left">
+                       <h3>Total Revenue</h3>
+                       <h1 id="total-revenue">Rp 0</h1>
+                     </div>
+                   </div>
+                   <small>All Time</small>
+                </div>
+           </div>
+      </main>
+
+      <!-- Manage Products -->
+      <main id="products-content" style="display: none;">
+        <h1>Manage Products</h1>
+        <button onclick="addProduct()">Add Product</button>
+        <table>
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="product-table"></tbody>
+        </table>
+      </main>
+
+      <!-- Orders -->
+      <main id="orders-content" style="display: none;">
+        <h1>Orders</h1>
+        <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="order-table"></tbody>
+        </table>
+      </main>
+
+      <script>
+        const apiBaseUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com";
+        let sellerId = "";
+
+        document.addEventListener("DOMContentLoaded", async () => {
+          const token = localStorage.getItem("token");
+          if (!token) {
+            alert("You are not logged in!");
+            window.location.href = "login.html";
+            return;
+          }
+
+          // Decode token
+          const decoded = JSON.parse(atob(token.split(".")[1]));
+          sellerId = decoded.user_id;
+
+          // Fetch Data
+          fetchDashboardData();
+          fetchProducts();
+          fetchOrders();
+          fetchMessages();
+        });
+
+        async function fetchDashboardData() {
+          try {
+            const response = await fetch(`${apiBaseUrl}/dashboard-data?seller_id=${sellerId}`);
+            const data = await response.json();
+
+            document.getElementById("total-sales").textContent = `Rp ${data.totalSales.toLocaleString()}`;
+            document.getElementById("pending-orders").textContent = data.pendingOrders;
+            document.getElementById("total-revenue").textContent = `Rp ${data.totalRevenue.toLocaleString()}`;
+          } catch (error) {
+            console.error("Error fetching dashboard data:", error);
+          }
+        }
+
+        async function fetchProducts() {
+          try {
+            const response = await fetch(`${apiBaseUrl}/products?seller_id=${sellerId}`);
+            const products = await response.json();
+
+            const productTable = document.getElementById("product-table");
+            productTable.innerHTML = products.map(product => `
+              <tr>
+                <td>${product.name}</td>
+                <td>Rp ${product.price.toLocaleString()}</td>
+                <td>${product.stock}</td>
+                <td>
+                  <button onclick="editProduct('${product.id}')">Edit</button>
+                  <button onclick="deleteProduct('${product.id}')">Delete</button>
+                </td>
+              </tr>
+            `).join("");
+          } catch (error) {
+            console.error("Error fetching products:", error);
+          }
+        }
+
+        async function fetchOrders() {
+          try {
+            const response = await fetch(`${apiBaseUrl}/orders?seller_id=${sellerId}`);
+            const orders = await response.json();
+
+            const orderTable = document.getElementById("order-table");
+            orderTable.innerHTML = orders.map(order => `
+              <tr>
+                <td>${order.id}</td>
+                <td>${order.customer}</td>
+                <td>Rp ${order.total.toLocaleString()}</td>
+                <td>${order.status}</td>
+              </tr>
+            `).join("");
+          } catch (error) {
+            console.error("Error fetching orders:", error);
+          }
+        }
+
+        async function fetchMessages() {
+          try {
+            const response = await fetch(`${apiBaseUrl}/messages?seller_id=${sellerId}`);
+            const messages = await response.json();
+
+            const messageList = document.getElementById("message-list");
+            messageList.innerHTML = messages.map(msg => `<p><strong>${msg.sender}:</strong> ${msg.content}</p>`).join("");
+          } catch (error) {
+            console.error("Error fetching messages:", error);
+          }
+        }
+      </script>
+   </div>
+</body>
+</html>

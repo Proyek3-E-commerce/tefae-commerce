@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Glowsie</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <h2>G <span class="danger">LOWSIE</span></h2>
+          </div>
+          <div class="close" id="close_btn">
+            <span class="material-symbols-sharp">close</span>
+          </div>
+        </div>
+        <div class="sidebar">
+          <a href="index.html" id="nav-dashboard" class="active">
+            <span class="material-symbols-sharp">grid_view</span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href="category.html">
+            <span class="material-symbols-sharp">category</span>
+            <h3>Categories</h3>
+          </a>
+          <a href="customers.html" id="nav-customers">
+            <span class="material-symbols-sharp">person_outline</span>
+            <h3>Customers</h3>
+          </a>
+          <a href="seller.html" id="nav-sellers">
+            <span class="material-symbols-sharp">storefront</span>
+            <h3>Sellers</h3>
+          </a>
+          <a href="product.html" id="nav-products">
+            <span class="material-symbols-sharp">receipt_long</span>
+            <h3>Products</h3>
+          </a>
+          <a href="logout.html" id="logout-link">
+            <span class="material-symbols-sharp">logout</span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </aside>
+      <main id="content">
+        <h1>Dashboard Admin</h1>
+        <div class="insights">
+          <div class="card">
+            <span class="material-symbols-sharp">person_outline</span>
+            <div class="content">
+              <h3>Customers</h3>
+              <p id="total-customers">Loading...</p>
+            </div>
+          </div>
+          <div class="card">
+            <span class="material-symbols-sharp">storefront</span>
+            <div class="content">
+              <h3>Sellers</h3>
+              <p id="total-sellers">Loading...</p>
+            </div>
+          </div>
+          <div class="card">
+            <span class="material-symbols-sharp">receipt_long</span>
+            <div class="content">
+              <h3>Products</h3>
+              <p id="total-products">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="right">
+        <div class="top">
+          <button id="menu_bar">
+            <span class="material-symbols-sharp">menu</span>
+          </button>
+          <div class="profile">
+            <div class="info">
+              <p><b>Glowsie</b></p>
+              <p>Admin</p>
+            </div>
+            <div class="profile-photo">
+              <img src="./images/profile.jpeg" alt="Profile" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const apiBaseUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com";
+
+        async function fetchCount(endpoint, elementId) {
+          try {
+            const response = await fetch(`${apiBaseUrl}/${endpoint}`);
+            const result = await response.json();
+
+            console.log(`Response for ${endpoint}:`, result);
+
+            let count = 0;
+
+            // Penanganan berbagai jenis respons
+            if (Array.isArray(result)) {
+              count = result.length;
+            } else if (result.data && Array.isArray(result.data)) {
+              count = result.data.length;
+            } else {
+              console.warn(
+                `Unexpected response format for ${endpoint}:`,
+                result
+              );
+            }
+
+            document.getElementById(elementId).textContent = count;
+          } catch (error) {
+            console.error(`Error fetching ${endpoint}:`, error);
+            document.getElementById(elementId).textContent = "Error";
+          }
+        }
+
+        // Fetch counts for Customers, Sellers, and Products
+        fetchCount("customers", "total-customers");
+        fetchCount("sellers", "total-sellers");
+        fetchCount("products", "total-products");
+
+        // Logika Logout
+        const logoutLink = document.getElementById("logout-link");
+
+        const logout = () => {
+          console.log("Logging out...");
+
+          // Hapus token dari localStorage
+          localStorage.removeItem("token");
+
+          // Verifikasi penghapusan token
+          if (!localStorage.getItem("token")) {
+            console.log("Token removed successfully.");
+            alert("Logout successful!");
+            // Redirect ke halaman login
+            window.location.href = "/login.html";
+          } else {
+            console.error("Failed to remove token.");
+          }
+        };
+
+        if (logoutLink) {
+          logoutLink.addEventListener("click", (event) => {
+            event.preventDefault(); // Mencegah navigasi default
+            logout(); // Jalankan fungsi logout
+          });
+        } else {
+          console.error("Logout link not found.");
+        }
+      });
+    </script>
+  </body>
+</html>

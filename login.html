@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+    <title>Login - Glowing</title>
+  </head>
+
+  <body>
+    <!-- Header-like section -->
+    <header class="header-login-regis">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="./assets/images/logo.png" alt="Glowing" />
+        </a>
+      </div>
+    </header>
+
+    <!-- Login Form -->
+    <main>
+      <div class="container">
+        <div class="form-container">
+          <h2 class="h2">Login</h2>
+          <form id="loginForm" onsubmit="validateLogin(event)">
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              class="input-field"
+              required
+            />
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              class="input-field"
+              required
+            />
+            <button class="btn btn-primary" type="submit">Login</button>
+          </form>
+          <p>
+            Don't have an account?
+            <a href="registrasi.html" class="btn-link">Register here</a>
+          </p>
+        </div>
+      </div>
+    </main>
+    <!-- Custom Script -->
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

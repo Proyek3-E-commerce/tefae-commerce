@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products - Glowing</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="alert">
+        <div class="container">
+          <p class="alert-text">Reveal The Beauty of Skin</p>
+        </div>
+      </div>
+
+      <div class="header-top" data-header>
+        <div class="container">
+          <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+          </button>
+
+          <!-- <div class="input-wrapper">
+            <input
+              type="search"
+              name="search"
+              placeholder="Search product"
+              class="search-field"
+            />
+            <button class="search-submit" aria-label="search">
+              <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div> -->
+
+          <a href="index.html" class="logo">
+            <img
+              src="./assets/images/logo.png"
+              width="179"
+              height="26"
+              alt="Glowing"
+            />
+          </a>
+
+          <div class="header-actions">
+            <a href="login.html" class="header-action-btn" aria-label="user">
+              <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+            </a>
+            <a class="header-action-btn" href="../favorit/fav.html" aria-label="favourite item">
+              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+              <span id="favorite-count" class="btn-badge">0</span>
+            </a>
+            <a class="header-action-btn" href="../cart/cart.html" aria-label="cart item">
+              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+              <span class="btn-badge">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section products">
+        <div class="container">
+          <h1 class="section-title">All Products</h1>
+          <ul class="product-list" id="product-list">
+            <!-- Produk akan dimasukkan di sini oleh JavaScript -->
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Glowing. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Ambil token dari localStorage atau sessionStorage
+      const authToken = localStorage.getItem('authToken'); 
+
+      // Fetch produk dari API
+      fetch('https://tefae-commerce-2c0fdca4d608.herokuapp.com/products', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${authToken}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        const products = data.data;
+        const productList = document.getElementById('product-list');
+
+        // Menambahkan produk ke halaman
+        products.forEach(product => {
+          const productItem = document.createElement('li');
+          productItem.classList.add('product-item');
+
+          const productCard = document.createElement('div');
+          productCard.classList.add('product-card');
+
+          const productImage = document.createElement('img');
+          productImage.classList.add('product-image');
+          productImage.src = product.image ? product.image : './assets/images/default-product.jpg';  // Default image jika image kosong
+          productImage.alt = product.name;
+
+          const productTitle = document.createElement('h2');
+          productTitle.classList.add('product-title');
+          productTitle.innerText = product.name;
+
+          const productPrice = document.createElement('p');
+          productPrice.classList.add('product-price');
+          const discountedPrice = product.price * (1 - (product.discount / 100));
+          productPrice.innerText = `Rp. ${discountedPrice.toLocaleString()}`;
+
+          const addToCartButton = document.createElement('button');
+          addToCartButton.classList.add('btn');
+          addToCartButton.innerText = 'Add to Cart';
+
+          // Menambahkan elemen ke dalam produk item
+          productCard.appendChild(productImage);
+          productCard.appendChild(productTitle);
+          productCard.appendChild(productPrice);
+          productCard.appendChild(addToCartButton);
+          productItem.appendChild(productCard);
+
+          productList.appendChild(productItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
+    </script>
+  </body>
+</html>

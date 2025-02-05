@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      /* Header Styling */
+      .header-top {
+        display: flex;
+        justify-content: space-between; /* Pastikan elemen tersebar di sisi kiri dan kanan */
+        align-items: center; /* Pusatkan secara vertikal */
+      }
+      
+      .header .logo {
+        
+        transform: translateX(-120px); /* Geser logo ke kiri sebesar 50px */
+      }
+      
+      /* Product Detail Card */
+      .product-detail-card {
+        max-width: 800px; /* Reduced card width */
+        margin: 10px auto; /* Adjusted margin for spacing */
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgb(247, 245, 245);
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      /* Product Image */
+      .product-image {
+        flex: 1;
+        min-width: 250px;
+        max-width: 40%;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .product-image img {
+        max-width: 180%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 8px;
+        padding: 50px;
+      }
+
+      /* Product Information */
+      .product-info {
+        flex: 1;
+        padding: 16px; /* Reduced padding */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .product-title {
+        font-size: 1.8rem; /* Reduced title size */
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+
+      .product-price {
+        color: #e63946;
+        font-size: 1.5rem; /* Reduced price size */
+        font-weight: bold;
+        margin: 8px 0; /* Adjusted margin */
+      }
+
+      .product-price del {
+        color: #777;
+        margin-right: 10px;
+        font-size: 1.1rem; /* Reduced del size */
+      }
+
+      .product-description {
+        margin: 12px 0; /* Adjusted margin */
+        font-size: 1.2rem; /* Reduced description size */
+        line-height: 1.5;
+        color: #555;
+      }
+
+      .product-rating {
+        margin: 12px 0; /* Adjusted margin */
+      }
+
+      .product-rating span {
+        font-size: 1rem; /* Reduced rating size */
+        font-weight: bold;
+      }
+
+      .product-rating div ion-icon {
+        color: #f5c518;
+      }
+
+      /* Store Info */
+      .store-info {
+        background-color: #f9f9f9;
+        padding: 12px; /* Reduced padding */
+        border-top: 1px solid #e0e0e0;
+        margin-top: 10px; /* Adjusted margin */
+      }
+
+      .store-info h3 {
+        font-size: 1.5rem; /* Reduced store info title size */
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      .store-info p {
+        margin: 10px 0;
+        font-size: 1.2rem; /* Reduced store info text size */
+      }
+
+      /* Add to Cart Button */
+      .btn-add-to-cart {
+        background-color: #ff5722;
+        color: white;
+        border: none;
+        padding: 10px 16px; /* Reduced padding */
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem; /* Reduced button text size */
+        margin-top: 16px; /* Adjusted margin */
+        align-self: flex-start;
+      }
+
+      .btn-add-to-cart:hover {
+        background-color: #e64a19;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .product-detail-card {
+          flex-direction: column;
+        }
+
+        .product-image,
+        .product-info {
+          max-width: 100%;
+          min-width: 100%;
+        }
+
+        .product-title {
+          font-size: 2rem;
+        }
+
+        .product-price {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="alert">
+        <div class="container">
+          <p class="alert-text">Reveal The Beauty of Skin</p>
+        </div>
+      </div>
+
+      <div class="header-top" data-header>
+        <div class="container">
+          <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+          </button>
+
+          <div class="input-wrapper">
+            <input
+              type="search"
+              name="search"
+              placeholder="Search product"
+              class="search-field"
+            />
+
+            <button class="search-submit" aria-label="search">
+              <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
+
+          <a href="/index.html" class="logo">
+            <img
+              src="../assets/images/logo.png"
+              width="176"
+              height="80"
+              alt="Glowing"
+            />
+          </a>
+
+          <div class="header-actions">
+            <!-- Ikon Keranjang -->
+            <a
+              class="header-action-btn"
+              href="../cart/cart.html"
+              aria-label="cart item"
+            >
+              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+              <span class="btn-badge" id="cart-count">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="product-details">
+        <div class="container">
+          <div id="product-container">
+            <p>Loading product details...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Glowing. All rights reserved.</p>
+      </div>
+    </footer>
+    
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get("productId");
+    
+      const renderProductDetails = (data) => {
+        const product = data.product;
+        const store = data.store;
+    
+        const imageUrl = product.image
+          ? `http://localhost:3000/${product.image.replace("./", "")}`
+          : "./images/default-product.png";
+    
+        const productContainer = document.getElementById("product-container");
+        productContainer.innerHTML = `
+          <div class="product-detail-card">
+            <!-- Product Images -->
+            <div class="product-image img">
+              <div class="product-image img">
+                <img src="${imageUrl}" alt="${product.name}" loading="lazy" />
+              </div>
+            </div>
+    
+            <!-- Product Info -->
+            <div class="product-info">
+              <h1 class="product-title">${product.category}: ${product.name}</h1>
+              <p class="product-price">
+                ${
+                  product.discount > 0
+                    ? `<del>Rp.${product.price.toLocaleString()}</del>`
+                    : ""
+                }
+                <span>Rp.${(
+                  product.price *
+                  (1 - product.discount / 100)
+                ).toLocaleString()}</span>
+              </p>
+              <p class="product-description">${product.description}</p>
+    
+              <!-- Store Info -->
+              <div class="store-info">
+                <a href="halamantoko.html?storeId=${
+                  store.seller_id
+                }" class="store-link" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+                  <ion-icon name="storefront-outline" aria-hidden="true" style="font-size: 1.5rem; color: #e63946;"></ion-icon>
+                  <span>${store.store_name}</span>
+                </a>
+                <p>${store.full_address}</p>
+              </div>
+    
+              <!-- Add to Cart Button -->
+              <button class="btn-add-to-cart" onclick="addToCart('${product.id}')">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        `;
+      };
+    
+      const addToCart = async (productId) => {
+        try {
+          const token = localStorage.getItem("token");
+          if (!token) throw new Error("User is not authenticated");
+    
+          const userId = JSON.parse(atob(token.split(".")[1])).user_id;
+    
+          // Ambil detail produk dari backend
+          const response = await fetch(`http://localhost:3000/products/${productId}`);
+          if (!response.ok) {
+            throw new Error(
+              `Failed to fetch product details: ${response.statusText}`
+            );
+          }
+    
+          const productData = await response.json();
+          const product = productData.product;
+    
+          // Kirim produk ke backend untuk disimpan di keranjang
+          const cartResponse = await fetch("http://localhost:3000/cart", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              user_id: userId,
+              product_id: product.id,
+              image: product.image,
+              price: product.price,
+              quantity: 1,
+              total_price: product.price,
+            }),
+          });
+    
+          if (!cartResponse.ok) {
+            const errorData = await cartResponse.json();
+            throw new Error(
+              `Failed to add product to cart: ${errorData.message || "Unknown error"}`
+            );
+          }
+    
+          alert("Product added to cart!");
+          window.location.href = "../cart/cart.html";
+        } catch (error) {
+          console.error("Error adding product to cart:", error.message);
+          alert("Failed to add product to cart. Please try again.");
+        }
+      };
+    
+      const updateCartCount = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          if (!token) {
+            console.warn("User not authenticated. Cart count will default to 0.");
+            document.getElementById("cart-count").textContent = "0";
+            return;
+          }
+    
+          const base64Url = token.split(".")[1];
+          const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+          const decodedToken = JSON.parse(
+            decodeURIComponent(
+              atob(base64)
+                .split("")
+                .map(
+                  (c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+                )
+                .join("")
+            )
+          );
+          const userId = decodedToken.user_id;
+    
+          // Fetch data keranjang dari backend
+          const response = await fetch(
+            `http://localhost:3000/cart?user_id=${userId}`
+          );
+          if (!response.ok) {
+            throw new Error(`Failed to fetch cart data: ${response.statusText}`);
+          }
+    
+          const data = await response.json();
+          const products = data.products || [];
+    
+          // Hitung jumlah total produk
+          const totalCount = products.reduce(
+            (sum, product) => sum + product.quantity,
+            0
+          );
+    
+          // Perbarui jumlah produk di badge
+          document.getElementById("cart-count").textContent = totalCount;
+        } catch (error) {
+          console.error("Error updating cart count:", error.message);
+          document.getElementById("cart-count").textContent = "0"; // Tampilkan 0 jika terjadi kesalahan
+        }
+      };
+    
+      // Fetch detail produk saat halaman dimuat
+      if (productId) {
+        fetch(`http://localhost:3000/products/${productId}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                `Failed to fetch product details: ${response.statusText}`
+              );
+            }
+            return response.json();
+          })
+          .then((data) => renderProductDetails(data))
+          .catch((error) =>
+            console.error("Error fetching product details:", error.message)
+          );
+      } else {
+        document.getElementById("product-container").innerHTML =
+          "<p>No product ID found in URL</p>";
+      }
+    
+      // Panggil fungsi untuk memperbarui jumlah keranjang
+      document.addEventListener("DOMContentLoaded", updateCartCount);
+    </script>    
+  </body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Saya</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    .header {
+      background-color: #f3f3bf;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff5722;
+    }
+
+    .username {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .btn {
+      background-color: white;
+      color: #000000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #000000;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .content {
+      margin: 16px;
+      padding: 16px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .section {
+      margin-top: 32px;
+    }
+
+    .section h3 {
+      margin-bottom: 16px;
+      color: #000000;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .product-title {
+      font-size: 1rem;
+      margin: 12px 0;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .product-price {
+      color: #000000;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .product-button {
+      background-color: #f3f3bf;
+      color: rgb(0, 0, 0);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .product-button:hover {
+      background-color: #f3f3bf;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #f3f3bf;
+      color: rgb(0, 0, 0);
+    }
+
+    table tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <!-- User Info -->
+    <div class="user-info">
+      <div class="user-icon">👤</div>
+      <div class="username">Toko Saya</div>
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+      <div class="menu-icon">🛒</div>
+      <button class="btn">Tambah Produk</button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <h2>Produk di Toko Anda</h2>
+
+    <!-- Product Grid -->
+    <div class="product-grid">
+      <!-- Product Card 1 -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Produk 1">
+        <div class="product-title">Produk 1</div>
+        <div class="product-price">Rp 50.000</div>
+        <button class="product-button">Beli Sekarang</button>
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Produk 2">
+        <div class="product-title">Produk 2</div>
+        <div class="product-price">Rp 75.000</div>
+        <button class="product-button">Beli Sekarang</button>
+      </div>
+    </div>
+
+    <!-- Barang Masuk -->
+    <div class="section">
+      <h3>Data Barang Masuk</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Barang</th>
+            <th>Jumlah</th>
+            <th>Tanggal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Produk 1</td>
+            <td>20</td>
+            <td>2025-01-15</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Produk 2</td>
+            <td>15</td>
+            <td>2025-01-16</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Barang Keluar -->
+    <div class="section">
+      <h3>Data Barang Keluar</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Barang</th>
+            <th>Jumlah</th>
+            <th>Tanggal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Produk 1</td>
+            <td>5</td>
+            <td>2025-01-16</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Produk 2</td>
+            <td>3</td>
+            <td>2025-01-17</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

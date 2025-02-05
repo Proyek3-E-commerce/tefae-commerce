@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Best Sellers - Glowing</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+      .product-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+        padding: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .product-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+      }
+      .product-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .product-price {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 15px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+        background: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="alert">
+          <div class="container">
+            <p class="alert-text">Reveal The Beauty of Skin</p>
+          </div>
+        </div>
+      
+        <div class="header-top" data-header>
+          <div class="container">
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+              <span class="line line-1"></span>
+              <span class="line line-2"></span>
+              <span class="line line-3"></span>
+            </button>
+      
+            <!-- <div class="input-wrapper">
+              <input
+                type="search"
+                name="search"
+                placeholder="Search product"
+                class="search-field"
+              />
+      
+              <button class="search-submit" aria-label="search">
+                <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+              </button>
+            </div>
+       -->
+            <a href="index.html" class="logo">
+              <img
+                src="./assets/images/logo.png"
+                width="179"
+                height="26"
+                alt="Glowing"
+              />
+            </a>
+      
+            <div class="header-actions">
+              <a href="login.html" class="header-action-btn" aria-label="user">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+              </a>
+      
+              <a class="header-action-btn" href="../favorit/fav.html" aria-label="favourite item">
+                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+                <span id="favorite-count" class="btn-badge">0</span>
+              </a>
+      
+              <a class="header-action-btn" href="../cart/cart.html" aria-label="cart item">
+                <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+                <span class="btn-badge">0</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <section class="section products">
+        <div class="container">
+          <h1 class="section-title">Best Sellers Products</h1>
+          <ul class="product-list">
+            <li class="product-item">
+              <div class="product-card">
+                <img
+                  src="./assets/images/product-01.jpg"
+                  alt="Facial Cleanser"
+                  class="product-image"
+                />
+                <h2 class="product-title">Facial Cleanser</h2>
+                <p class="product-price">Rp.30.000</p>
+                <button class="btn">Add to Cart</button>
+              </div>
+            </li>
+
+            <li class="product-item">
+              <div class="product-card">
+                <img
+                  src="./assets/images/product-02.jpg"
+                  alt="Bio-shroom Rejuvenating Serum"
+                  class="product-image"
+                />
+                <h2 class="product-title">Bio-shroom Rejuvenating Serum</h2>
+                <p class="product-price">Rp.35.000</p>
+                <button class="btn">Add to Cart</button>
+              </div>
+            </li>
+
+            <li class="product-item">
+              <div class="product-card">
+                <img
+                  src="./assets/images/product-03.jpg"
+                  alt="Coffee Bean Caffeine Eye Cream"
+                  class="product-image"
+                />
+                <h2 class="product-title">Coffee Bean Caffeine Eye Cream</h2>
+                <p class="product-price">Rp.45.000</p>
+                <button class="btn">Add to Cart</button>
+              </div>
+            </li>
+
+            <li class="product-item">
+              <div class="product-card">
+                <img
+                  src="./assets/images/product-04.jpg"
+                  alt="Facial Moisturizer"
+                  class="product-image"
+                />
+                <h2 class="product-title">Facial Moisturizer</h2>
+                <p class="product-price">Rp.40.000</p>
+                <button class="btn">Add to Cart</button>
+              </div>
+            </li>
+
+            <li class="product-item">
+              <div class="product-card">
+                <img
+                  src="./assets/images/product-05.jpg"
+                  alt="Night Repair Serum"
+                  class="product-image"
+                />
+                <h2 class="product-title">Night Repair Serum</h2>
+                <p class="product-price">Rp.50.000</p>
+                <button class="btn">Add to Cart</button>
+              </div>
+            </li>
+
+           
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Glowing. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="./assets/js/script.js" defer></script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+      const productList = document.querySelector(".product-list");
+    
+      // Ganti URL ini dengan endpoint backend kamu
+      const API_URL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/products/best-sellers";
+    
+      async function fetchBestSellers() {
+        try {
+          const response = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+              Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzU5MDA5NjgsInVzZXJfaWQiOiI2NzY0ZjBkMDk0OWNkNmY5ZjhmNjcyYjUifQ.DTZpkPnPLS1VwU1_7pZ1gtfSNUn9x8boUKdgsEktXQM", // Ganti dengan token JWT yang valid
+            },
+          });
+    
+          if (!response.ok) {
+            throw new Error("Failed to fetch products");
+          }
+    
+          const data = await response.json();
+    
+          // Pastikan data memiliki array produk
+          if (data.status === "success" && Array.isArray(data.data)) {
+            displayProducts(data.data);
+          } else {
+            throw new Error("Invalid data structure");
+          }
+        } catch (error) {
+          console.error("Error fetching products:", error.message);
+        }
+      }
+    
+      function displayProducts(products) {
+        productList.innerHTML = ""; // Kosongkan daftar produk
+    
+        products.forEach((product) => {
+          const productCard = `
+            <li class="product-item">
+              <div class="product-card">
+                <img
+                  src="${product.image || './assets/images/default-product.jpg'}"
+                  alt="${product.name}"
+                  class="product-image"
+                />
+                <h2 class="product-title">${product.name}</h2>
+                <p class="product-price">Rp.${product.price.toLocaleString()}</p>
+                <button class="btn">Add to Cart</button>
+              </div>
+            </li>
+          `;
+          productList.insertAdjacentHTML("beforeend", productCard);
+        });
+      }
+    
+      // Panggil fungsi untuk fetch data
+      fetchBestSellers();
+    });
+    </script>
+  </body>
+</html>
