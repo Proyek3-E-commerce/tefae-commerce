@@ -240,7 +240,7 @@ const addToCart = async (product) => {
     alert(data.message); // Menampilkan pesan sukses
 
     // Redirect ke halaman keranjang
-    window.location.href = "../cart/cart.html";
+    window.location.href = "cart/cart.html";
   } catch (error) {
     console.error("Error adding product to cart:", error.message);
     alert("Failed to add product to cart. Please try again.");
