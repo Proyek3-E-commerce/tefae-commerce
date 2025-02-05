@@ -115,7 +115,7 @@ function validateLogin(event) {
   }
 
   // Send login request
-  fetch("http://localhost:3000/login", {
+  fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
