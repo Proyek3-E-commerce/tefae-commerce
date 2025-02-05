@@ -271,7 +271,7 @@
         const store = data.store;
     
         const imageUrl = product.image
-          ? `http://localhost:3000/${product.image.replace("./", "")}`
+          ? `https://tefae-commerce-2c0fdca4d608.herokuapp.com/${product.image.replace("./", "")}`
           : "./images/default-product.png";
     
         const productContainer = document.getElementById("product-container");
@@ -328,7 +328,7 @@
           const userId = JSON.parse(atob(token.split(".")[1])).user_id;
     
           // Ambil detail produk dari backend
-          const response = await fetch(`http://localhost:3000/products/${productId}`);
+          const response = await fetch(`https://tefae-commerce-2c0fdca4d608.herokuapp.com/products/${productId}`);
           if (!response.ok) {
             throw new Error(
               `Failed to fetch product details: ${response.statusText}`
@@ -339,7 +339,7 @@
           const product = productData.product;
     
           // Kirim produk ke backend untuk disimpan di keranjang
-          const cartResponse = await fetch("http://localhost:3000/cart", {
+          const cartResponse = await fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -395,7 +395,7 @@
     
           // Fetch data keranjang dari backend
           const response = await fetch(
-            `http://localhost:3000/cart?user_id=${userId}`
+            `https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart?user_id=${userId}`
           );
           if (!response.ok) {
             throw new Error(`Failed to fetch cart data: ${response.statusText}`);
@@ -420,7 +420,7 @@
     
       // Fetch detail produk saat halaman dimuat
       if (productId) {
-        fetch(`http://localhost:3000/products/${productId}`)
+        fetch(`https://tefae-commerce-2c0fdca4d608.herokuapp.com/products/${productId}`)
           .then((response) => {
             if (!response.ok) {
               throw new Error(

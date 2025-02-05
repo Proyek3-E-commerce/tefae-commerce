@@ -256,7 +256,7 @@
                         <td>${product.stock}</td>
                         <td>${product.discount}%</td>
                         <td>
-                            <img src="${product.image ? `${apiBaseUrl}/${product.image.replace("./", "")}` : "http://localhost:3000/uploads/no-image.jpg"}" 
+                            <img src="${product.image ? `${apiBaseUrl}/${product.image.replace("./", "")}` : "https://tefae-commerce-2c0fdca4d608.herokuapp.com/uploads/no-image.jpg"}" 
                             alt="Product Image" style="width: 50px;">
                         </td>
                         <td>${getCategoryName(product.category_id)}</td>
