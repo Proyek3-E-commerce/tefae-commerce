@@ -3,7 +3,7 @@ let cartItems = [];
 const fetchCartItems = async () => {
     try {
         const token = localStorage.getItem("token");
-        if (!token) throw new Error("User is not authenticated");
+        if (!token) throw new Error("User  is not authenticated");
 
         const decoded = JSON.parse(atob(token.split(".")[1]));
         const userId = decoded.user_id;
@@ -48,7 +48,6 @@ const renderCartItems = (items) => {
         .join("");
 };
 
-
 const updateTotal = () => {
     const shippingCost = parseInt(document.getElementById("shipping").value);
     const total = cartItems.reduce((sum, item) => {
@@ -60,11 +59,15 @@ const updateTotal = () => {
     document.getElementById("total-price").textContent = total.toLocaleString();
 };
 
-
 const processPayment = async () => {
     const token = localStorage.getItem("token"); 
     if (!token) {
-        alert("Please log in to proceed with payment.");
+        Swal.fire({
+            title: "Authentication Required",
+            text: "Please log in to proceed with payment.",
+            icon: "warning",
+            confirmButtonText: "OK",
+        });
         return;
     }
 
@@ -76,7 +79,12 @@ const processPayment = async () => {
     }, 0) + shippingCost;
 
     if (!shippingAddress) {
-        alert("Please enter your shipping address.");
+        Swal.fire({
+            title: "Missing Information",
+            text: "Please enter your shipping address.",
+            icon: "warning",
+            confirmButtonText: "OK",
+        });
         return;
     }
 
@@ -98,7 +106,7 @@ const processPayment = async () => {
                     name: item.name,
                     quantity: item.quantity,
                     price: item.price,
-                    product_id: item.product_id,  // ✅ Fix! Pastikan `product_id` dikirim
+                    product_id: item.product_id,  // Pastikan `product_id` dikirim
                 })),
             }),
         });
@@ -109,9 +117,14 @@ const processPayment = async () => {
         }
 
         const result = await response.json();
-        window.location.href = result.redirect_url; // ✅ Redirect ke Midtrans
+        window.location.href = result.redirect_url; // Redirect ke Midtrans
     } catch (error) {
-        alert("Payment failed: " + error.message);
+        Swal.fire({
+            title: "Payment Failed",
+            text: "Payment failed: " + error.message,
+            icon: "error",
+            confirmButtonText: "OK",
+        });
     }
 };
 
