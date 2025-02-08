@@ -14,6 +14,7 @@ const checkAuthentication = () => {
   }
   return true;
 };
+
 // Function to decode JWT token
 function parseJwt(token) {
   try {
@@ -49,9 +50,7 @@ const renderCartItems = (products) => {
 
       return `
         <div class="cart-item" id="product-${product.product_id}">
-          <img src="${imageUrl}" alt="${
-        product.name
-      }" class="product-image">
+          <img src="${imageUrl}" alt="${product.name}" class="product-image">
           <div class="cart-item-info">
             <p class="cart-item-title">${product.name}</p>
             <p class="cart-item-quantity">
@@ -61,15 +60,9 @@ const renderCartItems = (products) => {
               Price: Rp.${product.price.toLocaleString()}
             </p>
             <div class="quantity-controls">
-              <button onclick="updateQuantity('${
-                product.product_id
-              }', -1)">-</button>
-              <button onclick="updateQuantity('${
-                product.product_id
-              }', 1)">+</button>
-              <button class="delete-item-btn" onclick="removeFromCart('${
-                product.product_id
-              }')">
+              <button onclick="updateQuantity('${product.product_id}', -1)">-</button>
+              <button onclick="updateQuantity('${product.product_id}', 1)">+</button>
+              <button class="delete-item-btn" onclick="removeFromCart('${product.product_id}')">
                 <ion-icon name="trash-outline" aria-hidden="true"></ion-icon>
               </button>
             </div>
@@ -97,12 +90,17 @@ const updateQuantity = async (productId, delta) => {
     const newQuantity = currentQuantity + delta;
 
     if (newQuantity < 1) {
-      alert("Quantity cannot be less than 1.");
+      Swal.fire({
+        title: "Invalid Quantity",
+        text: "Quantity cannot be less than 1.",
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
       return;
     }
 
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("User is not authenticated");
+    if (!token) throw new Error("User  is not authenticated");
 
     const decoded = parseJwt(token);
     const userId = decoded?.user_id;
@@ -135,7 +133,12 @@ const updateQuantity = async (productId, delta) => {
     updateCartTotal();
   } catch (error) {
     console.error("Error updating cart:", error.message);
-    alert("Failed to update cart. Please try again.");
+    Swal.fire({
+      title: "Error",
+      text: "Failed to update cart. Please try again.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
   }
 };
 
@@ -161,16 +164,16 @@ const fetchCartItems = async () => {
   if (!checkAuthentication()) return;
   try {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("User is not authenticated");
+    if (!token) throw new Error("User  is not authenticated");
 
     const decoded = parseJwt(token);
     const userId = decoded?.user_id;
     if (!userId) throw new Error("Invalid user ID");
 
     const apiUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart";
-console.log(`Fetching cart from: ${apiUrl}?user_id=${userId}`);
+    console.log(`Fetching cart from: ${apiUrl}?user_id=${userId}`);
 
-const response = await fetch(`${apiUrl}?user_id=${userId}`);
+    const response = await fetch(`${apiUrl}?user_id=${userId}`);
     if (!response.ok) throw new Error("Failed to fetch cart items");
 
     const data = await response.json();
@@ -187,7 +190,7 @@ const response = await fetch(`${apiUrl}?user_id=${userId}`);
 const removeFromCart = async (productId) => {
   try {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("User is not authenticated");
+    if (!token) throw new Error("User  is not authenticated");
 
     const userId = JSON.parse(atob(token.split(".")[1])).user_id;
 
@@ -205,10 +208,20 @@ const removeFromCart = async (productId) => {
     console.log("Product removed successfully.");
 
     await fetchCartItems();
-    alert("Product removed successfully!");
+    Swal.fire({
+      title: "Success",
+      text: "Product removed successfully!",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
   } catch (error) {
     console.error("Error removing product from cart:", error.message);
-    alert("Failed to remove product from cart. Please try again.");
+    Swal.fire({
+      title: "Error",
+      text: "Failed to remove product from cart. Please try again.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
   }
 };
 

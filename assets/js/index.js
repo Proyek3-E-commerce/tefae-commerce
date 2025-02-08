@@ -1,10 +1,6 @@
 "use strict";
 
-// Fungsi-fungsi yang sudah ada tetap dipertahankan
-
-/**
- * add event on element
- */
+// Fungsi untuk menambahkan event listener pada elemen
 const addEventOnElem = function (elem, type, callback) {
   if (!elem) {
     console.error("Element is null or undefined.");
@@ -109,7 +105,7 @@ function validateLogin(event) {
   const password = document.getElementById("password").value.trim();
 
   if (!email || !password) {
-    alert("Email dan password harus diisi!");
+    Swal.fire("Error", "Email dan password harus diisi!", "error");
     return;
   }
 
@@ -150,17 +146,17 @@ function validateLogin(event) {
         document.addEventListener("DOMContentLoaded", () => {
           const role = localStorage.getItem("role");
           if (role !== "customer") {
-            alert("You must be logged in as a customer to access this page.");
+            Swal.fire("Error", "You must be logged in as a customer to access this page.", "error");
             window.location.href = "login.html"; // Redirect to login page
           }
         });
       } else {
-        alert("Login failed: " + data.message);
+        Swal.fire("Login Failed", data.message, "error");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error); // Debug error
-      alert("Login failed. Please try again.");
+      Swal.fire("Login Failed", "Please try again.", "error");
     });
 
   console.log("Email:", email);
@@ -178,12 +174,12 @@ const validateRegistration = function (event) {
   const password = document.getElementById("password").value.trim();
 
   if (!username || !email || !password) {
-    alert("All fields are required!");
+    Swal.fire("Error", "All fields are required!", "error");
     return false;
   }
 
   // Simulasi registrasi berhasil
-  alert("Registration successful!");
+  Swal.fire("Success", "Registration successful!", "success");
   window.location.href = "login.html"; // Redirect ke halaman login
 };
 
@@ -227,9 +223,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!isDuplicate) {
         favorites.push(product);
         localStorage.setItem("favorites", JSON.stringify(favorites));
-        alert("Produk ditambahkan ke favorit!");
+        Swal.fire("Success", "Produk ditambahkan ke favorit!", "success");
       } else {
-        alert("Produk sudah ada di favorit!");
+        Swal.fire("Info", "Produk sudah ada di favorit!", "info");
       }
     });
   });
@@ -283,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
       addToCart(productData);
 
       // Opsional: Tampilkan notifikasi sukses
-      alert(`${productData.name} berhasil ditambahkan ke keranjang!`);
+      Swal.fire("Success", `${productData.name} berhasil ditambahkan ke keranjang!`, "success");
     });
   });
 });
@@ -301,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to handle logout: removes token and redirects to login page
   const logout = () => {
     localStorage.removeItem("token");
-    alert("Logout successful!");
+    Swal.fire("Success", "Logout successful!", "success");
     window.location.href = "login.html";
   };
 
@@ -352,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
     if (!token) {
       // Jika pengguna belum login, tampilkan popup dan arahkan ke login.html
-      alert("You must log in first to become a seller.");
+      Swal.fire("Error", "You must log in first to become a seller.", "error");
       window.location.href = "login.html";
       return;
     }
@@ -373,13 +369,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (roles.includes("seller")) {
         if (storeStatus === "pending") {
           // Jika masih dalam review
-          alert("Your store registration is under review. Please wait for approval.");
+          Swal.fire("Info", "Your store registration is under review. Please wait for approval.", "info");
         } else if (storeStatus === "approved") {
           // Jika sudah disetujui, arahkan ke dashboard seller
           window.location.href = "Penjual-Dashboard/index.html";
         } else if (storeStatus === "rejected") {
           // Jika ditolak, tampilkan popup dan arahkan ke halaman utama
-          alert("Your store registration has been rejected. You will be redirected to the home page.");
+          Swal.fire("Error", "Your store registration has been rejected. You will be redirected to the home page.", "error");
           window.location.href = "index.html";
         }
       } else {
@@ -474,7 +470,7 @@ async function fetchProducts(url, containerId) {
 const addToCart = async (product) => {
   try {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("User  is not authenticated");
+    if (!token) throw new Error("User   is not authenticated");
 
     const decoded = JSON.parse(
       atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))
@@ -503,11 +499,19 @@ const addToCart = async (product) => {
       throw new Error(`Failed to add product to cart: ${responseText}`);
     }
 
-    alert("Product added to cart!");
-    window.location.href = "cart/cart.html";
+    // Menampilkan SweetAlert dengan timer
+    Swal.fire({
+      title: 'Success',
+      text: 'Product added to cart!',
+      icon: 'success',
+      timer: 3000, // Menampilkan alert selama 3 detik
+      timerProgressBar: true,
+    }).then(() => {
+      window.location.href = "cart/cart.html"; // Redirect setelah alert ditutup
+    });
   } catch (error) {
     console.error("Error adding product to cart:", error.message);
-    alert("Failed to add product to cart. Please try again.");
+    Swal.fire("Error", "Failed to add product to cart. Please try again.", "error");
   }
 };
 
@@ -520,7 +524,7 @@ const updateCartCount = async () => {
     // Ambil keranjang dari localStorage
     const token = localStorage.getItem("token");
     if (!token) {
-      console.warn("User  not authenticated. Cart count will default to 0.");
+      console.warn("User   not authenticated. Cart count will default to 0.");
       document.getElementById("cart-count").textContent = "0";
       return;
     }
