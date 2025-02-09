@@ -28,10 +28,22 @@ document.getElementById('paymentForm').addEventListener('submit', function(event
     .then(response => response.json())
     .then(data => {
         console.log('Response:', data);
-        alert('Payment successful!');
+        // Mengganti alert dengan SweetAlert
+        Swal.fire({
+            title: 'Success!',
+            text: 'Payment successful!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Payment failed. Please try again.');
+        // Mengganti alert dengan SweetAlert
+        Swal.fire({
+            title: 'Error!',
+            text: 'Payment failed. Please try again.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
     });
 });
