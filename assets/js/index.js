@@ -297,9 +297,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to handle logout: removes token and redirects to login page
   const logout = () => {
     localStorage.removeItem("token");
-    Swal.fire("Success", "Logout successful!", "success");
-    window.location.href = "login.html";
-  };
+    Swal.fire({
+        title: "Success",
+        text: "Logout successful!",
+        icon: "success",
+        timer: 1500, 
+        timerProgressBar: true, // Menampilkan progress bar
+        willClose: () => {
+            window.location.href = "login.html"; // Mengarahkan ke halaman login setelah SweetAlert ditutup
+        }
+    });
+};
 
   // Function to update the auth menu based on login status
   const updateAuthMenu = () => {
@@ -347,10 +355,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const token = localStorage.getItem("token");
     if (!token) {
-      // Jika pengguna belum login, tampilkan popup dan arahkan ke login.html
-      Swal.fire("Error", "You must log in first to become a seller.", "error");
-      window.location.href = "login.html";
-      return;
+        // Jika pengguna belum login, tampilkan popup dan arahkan ke login.html
+        Swal.fire({
+            title: "Error",
+            text: "You must log in first to become a seller.",
+            icon: "error",
+            timer: 2000, // Menampilkan SweetAlert selama 2 detik (2000 ms)
+            timerProgressBar: true, // Menampilkan progress bar
+            willClose: () => {
+                window.location.href = "login.html"; // Mengarahkan ke halaman login setelah SweetAlert ditutup
+            }
+        });
+        return;
     }
 
     try {
