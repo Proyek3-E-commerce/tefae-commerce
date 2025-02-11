@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Register</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <!-- Header-like section -->
@@ -49,13 +50,13 @@
     <script>
       function validateRegistration(event) {
         event.preventDefault(); // Mencegah halaman refresh saat form disubmit
-    
+
         // Ambil nilai input dari form
         const username = document.getElementById("username").value;
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const role = "customer"; // Default role; ubah sesuai kebutuhan Anda
-    
+
         // Buat objek data registrasi
         const registrationData = {
           username: username,
@@ -63,7 +64,7 @@
           password: password,
           roles: [role], // Mengirim role sebagai array
         };
-    
+
         // Kirim data registrasi ke backend menggunakan fetch
         fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/register", {
           // Ganti URL ini dengan endpoint backend Anda
@@ -81,19 +82,19 @@
           })
           .then((data) => {
             console.log("Respons dari backend:", data); // Debug respons backend
-            if (data.message === "User  registered successfully") {
+            if (data.message === "User registered successfully") {
               // Jika registrasi berhasil, tampilkan pesan sukses dan arahkan ke halaman login
               Swal.fire({
-                icon: 'success',
-                title: 'Success',
+                icon: "success",
+                title: "Success",
                 text: data.message,
               }).then(() => {
-                window.location.href = "./login.html"; // Arahkan ke halaman login setelah SweetAlert ditutup
+                window.location.href = "login.html"; // Arahkan ke halaman login setelah SweetAlert ditutup
               });
             } else {
               Swal.fire({
-                icon: 'error',
-                title: 'Registration Failed',
+                icon: "error",
+                title: "Registration Failed",
                 text: "Registrasi gagal: " + data.message,
               });
             }
@@ -101,14 +102,12 @@
           .catch((error) => {
             console.error("Terjadi kesalahan:", error); // Log kesalahan untuk debugging
             Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'Terjadi kesalahan saat registrasi. Silakan coba lagi.',
+              icon: "error",
+              title: "Error",
+              text: "Terjadi kesalahan saat registrasi. Silakan coba lagi.",
             });
           });
       }
     </script>
-
-    <script src="assets/js/index.js"></script>
   </body>
 </html>

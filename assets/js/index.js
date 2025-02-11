@@ -178,9 +178,34 @@ const validateRegistration = function (event) {
     return false;
   }
 
-  // Simulasi registrasi berhasil
-  Swal.fire("Success", "Registration successful!", "success");
-  window.location.href = "login.html"; // Redirect ke halaman login
+  // Kirim data ke backend
+  fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username, email, password }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "success") {
+        Swal.fire({
+          title: "Success",
+          text: "Registration successful!",
+          icon: "success",
+          timer: 2000, 
+          timerProgressBar: true,
+        }).then(() => {
+          window.location.href = "login.html"; // Redirect ke halaman login setelah alert ditutup
+        });
+      } else {
+        Swal.fire("Error", data.message, "error");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      Swal.fire("Error", "Something went wrong. Please try again!", "error");
+    });
 };
 
 // Tambahkan event listener hanya pada halaman login atau registrasi
