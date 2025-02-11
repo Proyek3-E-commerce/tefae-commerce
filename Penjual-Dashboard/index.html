@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seller Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -32,7 +33,7 @@
             <span class="material-symbols-sharp">shopping_cart</span>
             <h3>Orders</h3>
           </a>
-          <a href="#" id="logout-link">
+          <a href="logout.html" id="logout-link">
             <span class="material-symbols-sharp">logout</span>
             <h3>Logout</h3>
           </a>          
@@ -108,96 +109,7 @@
             <tbody id="order-table"></tbody>
         </table>
       </main>
-
-      <script>
-        const apiBaseUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com";
-        let sellerId = "";
-
-        document.addEventListener("DOMContentLoaded", async () => {
-          const token = localStorage.getItem("token");
-          if (!token) {
-            alert("You are not logged in!");
-            window.location.href = "login.html";
-            return;
-          }
-
-          // Decode token
-          const decoded = JSON.parse(atob(token.split(".")[1]));
-          sellerId = decoded.user_id;
-
-          // Fetch Data
-          fetchDashboardData();
-          fetchProducts();
-          fetchOrders();
-          fetchMessages();
-        });
-
-        async function fetchDashboardData() {
-          try {
-            const response = await fetch(`${apiBaseUrl}/dashboard-data?seller_id=${sellerId}`);
-            const data = await response.json();
-
-            document.getElementById("total-sales").textContent = `Rp ${data.totalSales.toLocaleString()}`;
-            document.getElementById("pending-orders").textContent = data.pendingOrders;
-            document.getElementById("total-revenue").textContent = `Rp ${data.totalRevenue.toLocaleString()}`;
-          } catch (error) {
-            console.error("Error fetching dashboard data:", error);
-          }
-        }
-
-        async function fetchProducts() {
-          try {
-            const response = await fetch(`${apiBaseUrl}/products?seller_id=${sellerId}`);
-            const products = await response.json();
-
-            const productTable = document.getElementById("product-table");
-            productTable.innerHTML = products.map(product => `
-              <tr>
-                <td>${product.name}</td>
-                <td>Rp ${product.price.toLocaleString()}</td>
-                <td>${product.stock}</td>
-                <td>
-                  <button onclick="editProduct('${product.id}')">Edit</button>
-                  <button onclick="deleteProduct('${product.id}')">Delete</button>
-                </td>
-              </tr>
-            `).join("");
-          } catch (error) {
-            console.error("Error fetching products:", error);
-          }
-        }
-
-        async function fetchOrders() {
-          try {
-            const response = await fetch(`${apiBaseUrl}/orders?seller_id=${sellerId}`);
-            const orders = await response.json();
-
-            const orderTable = document.getElementById("order-table");
-            orderTable.innerHTML = orders.map(order => `
-              <tr>
-                <td>${order.id}</td>
-                <td>${order.customer}</td>
-                <td>Rp ${order.total.toLocaleString()}</td>
-                <td>${order.status}</td>
-              </tr>
-            `).join("");
-          } catch (error) {
-            console.error("Error fetching orders:", error);
-          }
-        }
-
-        async function fetchMessages() {
-          try {
-            const response = await fetch(`${apiBaseUrl}/messages?seller_id=${sellerId}`);
-            const messages = await response.json();
-
-            const messageList = document.getElementById("message-list");
-            messageList.innerHTML = messages.map(msg => `<p><strong>${msg.sender}:</strong> ${msg.content}</p>`).join("");
-          } catch (error) {
-            console.error("Error fetching messages:", error);
-          }
-        }
-      </script>
+      <script src="js/index.js"></script>
    </div>
 </body>
 </html>

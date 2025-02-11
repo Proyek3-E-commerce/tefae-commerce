@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Best Sellers - Glowing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
     <style>
       .product-list {
@@ -78,19 +77,6 @@
               <span class="line line-3"></span>
             </button>
       
-            <!-- <div class="input-wrapper">
-              <input
-                type="search"
-                name="search"
-                placeholder="Search product"
-                class="search-field"
-              />
-      
-              <button class="search-submit" aria-label="search">
-                <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-              </button>
-            </div>
-       -->
             <a href="index.html" class="logo">
               <img
                 src="./assets/images/logo.png"
@@ -203,7 +189,8 @@
       </div>
     </footer>
 
-    <script src="./assets/js/script.js" defer></script>
+    <script src="./assets/js/index.js" defer></script>
+    <script src="cart/js/cart.js" defer></script>
     <script>document.addEventListener("DOMContentLoaded", function () {
       const productList = document.querySelector(".product-list");
     
