@@ -1757,7 +1757,7 @@ footer p {
 
 .header .logo {
   margin: 0 auto; /* Pusatkan logo secara horizontal */
-  transform: translateX(-50px); /* Geser logo ke kiri sebesar 50px */
+  transform: translateX(80px); /* Geser logo ke kiri sebesar 50px */
 }
 
 .header-actions {
