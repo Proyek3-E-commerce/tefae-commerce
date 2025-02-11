@@ -196,7 +196,7 @@
             alert("Your store registration is under review. Please wait for approval.");
           } else if (storeStatus === "approved") {
             // Jika sudah disetujui, arahkan ke dashboard seller
-            window.location.href = "Penjual-Dashboard/index.html";
+            window.location.href = "Penjual-ashboard/index.html";
           } else if (storeStatus === "rejected") {
             // Jika ditolak, tampilkan popup dan arahkan ke halaman utama
             alert("Your store registration has been rejected. You will be redirected to the home page.");
@@ -446,12 +446,7 @@
         </div>
       </section>
       
-      <!-- <script>
-
-        import {addCSSInHead} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
-import Swal from 'https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js';
-
-await addCSSInHead("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+      <script>
        // Fungsi untuk mengambil produk dari backend dan render ke halaman
        async function fetchProducts(url, containerId) {
         try {
@@ -566,7 +561,7 @@ const addToCart = async (product) => {
     window.location.href = "cart/cart.html";
   } catch (error) {
     console.error("Error adding product to cart:", error.message);
-    Swal.fire('Melanjutkan...', 'Tindakan Anda telah dikonfirmasi.', 'success');
+    alert("Failed to add product to cart. Please try again.");
   }
 };
 
@@ -618,7 +613,7 @@ fetchProducts("https://tefae-commerce-2c0fdca4d608.herokuapp.com/products", "bes
 
 // Panggil fungsi saat halaman dimuat
 document.addEventListener("DOMContentLoaded", updateCartCount);
-      </script>      -->
+      </script>     
   
         <!-- 
         - #BANNER
@@ -972,9 +967,5 @@ document.addEventListener("DOMContentLoaded", updateCartCount);
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
-    <script 
-    type="module"
-    src="assets/js/script.js">
-  </script>
   </body>
 </html>
