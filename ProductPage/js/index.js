@@ -6,7 +6,7 @@ const renderProductDetails = (data) => {
   const store = data.store;
 
   const imageUrl = product.image
-    ? `https://tefae-commerce-2c0fdca4d608.herokuapp.com/${product.image.replace("./", "")}`
+    ? `https://glowing-02bd61cbeff9.herokuapp.com/${product.image.replace("./", "")}`
     : "./images/default-product.png";
 
   const productContainer = document.getElementById("product-container");
@@ -63,7 +63,7 @@ const addToCart = async (productId) => {
       const userId = JSON.parse(atob(token.split(".")[1])).user_id;
   
       // Ambil detail produk dari backend
-      const response = await fetch(`https://tefae-commerce-2c0fdca4d608.herokuapp.com/products/${productId}`);
+      const response = await fetch(`https://glowing-02bd61cbeff9.herokuapp.com/products/${productId}`);
       if (!response.ok) {
         throw new Error(
           `Failed to fetch product details: ${response.statusText}`
@@ -74,7 +74,7 @@ const addToCart = async (productId) => {
       const product = productData.product;
   
       // Kirim produk ke backend untuk disimpan di keranjang
-      const cartResponse = await fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart", {
+      const cartResponse = await fetch("https://glowing-02bd61cbeff9.herokuapp.com/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -139,7 +139,7 @@ const updateCartCount = async () => {
 
     // Fetch data keranjang dari backend
     const response = await fetch(
-      `https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart?user_id=${userId}`
+      `https://glowing-02bd61cbeff9.herokuapp.com/cart?user_id=${userId}`
     );
     if (!response.ok) {
       throw new Error(`Failed to fetch cart data: ${response.statusText}`);
@@ -164,7 +164,7 @@ const updateCartCount = async () => {
 
 // Fetch detail produk saat halaman dimuat
 if (productId) {
-  fetch(`https://tefae-commerce-2c0fdca4d608.herokuapp.com/products/${productId}`)
+  fetch(`https://glowing-02bd61cbeff9.herokuapp.com/products/${productId}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(

@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const API_URL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/users/me";
-    const UPDATE_URL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/users/update-profile";
-    const SEND_OTP_URL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/users/send-password-reset-email";
-    const VERIFY_OTP_URL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/users/verify-otp";
-    const CHANGE_PASSWORD_URL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/users/reset-password";
+    const API_URL = "https://glowing-02bd61cbeff9.herokuapp.com/users/me";
+    const UPDATE_URL = "https://glowing-02bd61cbeff9.herokuapp.com/users/update-profile";
+    const SEND_OTP_URL = "https://glowing-02bd61cbeff9.herokuapp.com/users/send-password-reset-email";
+    const VERIFY_OTP_URL = "https://glowing-02bd61cbeff9.herokuapp.com/users/verify-otp";
+    const CHANGE_PASSWORD_URL = "https://glowing-02bd61cbeff9.herokuapp.com/users/reset-password";
     const token = localStorage.getItem("token");
 
     const fields = [

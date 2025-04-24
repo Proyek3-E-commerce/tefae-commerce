@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
   const updateStatusForm = document.getElementById("updateStatusForm");
   const updateAllDataForm = document.getElementById("updateAllDataForm");
-  const apiBaseUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com";
+  const apiBaseUrl = "https://glowing-02bd61cbeff9.herokuapp.com";
   const ordersApi = `${apiBaseUrl}/orders`;
   const updateOrderApi = `${apiBaseUrl}/orders`;
 

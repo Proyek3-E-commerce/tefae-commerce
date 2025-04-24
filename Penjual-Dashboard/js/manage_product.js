@@ -6,7 +6,7 @@
     let subCategories = [];
     let userId = null;
 
-    const apiBaseUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com";
+    const apiBaseUrl = "https://glowing-02bd61cbeff9.herokuapp.com";
     const categoryApi = `${apiBaseUrl}/categories`;
     const productsApi = `${apiBaseUrl}/seller/products`;
     const updateDeleteApi = `${apiBaseUrl}/sellers`;
@@ -75,7 +75,7 @@
                         <td>${product.stock}</td>
                         <td>${product.discount}%</td>
                         <td>
-                            <img src="${product.image ? `${apiBaseUrl}/${product.image.replace("./", "")}` : "https://tefae-commerce-2c0fdca4d608.herokuapp.com/uploads/no-image.jpg"}" 
+                            <img src="${product.image ? `${apiBaseUrl}/${product.image.replace("./", "")}` : "https://glowing-02bd61cbeff9.herokuapp.com/uploads/no-image.jpg"}" 
                             alt="Product Image" style="width: 50px;">
                         </td>
                         <td>${getCategoryName(product.category_id)}</td>

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const apiUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/sellers";
-  const approveUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/admin/approve-seller";
-  const rejectUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/admin/reject-seller";
+  const apiUrl = "https://glowing-02bd61cbeff9.herokuapp.com/sellers";
+  const approveUrl = "https://glowing-02bd61cbeff9.herokuapp.com/admin/approve-seller";
+  const rejectUrl = "https://glowing-02bd61cbeff9.herokuapp.com/admin/reject-seller";
   const sellerTable = document.querySelector("#seller-table tbody");
   const sellerForm = document.getElementById("seller-form");
   const editModal = document.getElementById("edit-modal");
@@ -50,7 +50,7 @@ const isIncomplete =
 
 // Tentukan URL gambar
 const photoUrl = user.store_info?.photo_path
-  ? `https://tefae-commerce-2c0fdca4d608.herokuapp.com/${user.store_info.photo_path.replace(/\\/g, "/")}`
+  ? `https://glowing-02bd61cbeff9.herokuapp.com/${user.store_info.photo_path.replace(/\\/g, "/")}`
   : "./images/default-photo.png"; // Gambar default jika tidak ada foto
 
 return `

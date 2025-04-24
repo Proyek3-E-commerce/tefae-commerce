@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const apiUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/customers";
-  const userApiUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/users"; // Untuk suspend
+  const apiUrl = "https://glowing-02bd61cbeff9.herokuapp.com/customers";
+  const userApiUrl = "https://glowing-02bd61cbeff9.herokuapp.com/users"; // Untuk suspend
   const customerTable = document.querySelector("#customer-table tbody");
   const customerForm = document.getElementById("customer-form");
   const editModal = document.getElementById("edit-modal");

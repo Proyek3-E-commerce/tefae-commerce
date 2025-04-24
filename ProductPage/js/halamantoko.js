@@ -8,7 +8,7 @@ const fetchStoreData = async () => {
   }
 
   try {
-    const response = await fetch(`https://tefae-commerce-2c0fdca4d608.herokuapp.com/stores/${storeId}`);
+    const response = await fetch(`https://glowing-02bd61cbeff9.herokuapp.com/stores/${storeId}`);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch store data: ${response.statusText}`);
@@ -39,7 +39,7 @@ const fetchStoreData = async () => {
       data.products.forEach((product) => {
         // Pastikan jalur gambar ditampilkan dengan benar
         const imageUrl = product.image
-          ? `https://tefae-commerce-2c0fdca4d608.herokuapp.com/${product.image.replace("./", "")}`
+          ? `https://glowing-02bd61cbeff9.herokuapp.com/${product.image.replace("./", "")}`
           : "./images/default-product.png";
 
         const productCard = document.createElement("div");
@@ -83,7 +83,7 @@ const handleAddToCart = async (event) => {
   
       const userId = JSON.parse(atob(token.split(".")[1])).user_id;
   
-      const response = await fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart", {
+      const response = await fetch("https://glowing-02bd61cbeff9.herokuapp.com/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

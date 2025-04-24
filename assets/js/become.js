@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_SEND_EMAIL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/users/send-password-reset-email";
-    const API_RESET_PASSWORD = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/users/reset-password";
+    const API_SEND_EMAIL = "https://glowing-02bd61cbeff9.herokuapp.com/users/send-password-reset-email";
+    const API_RESET_PASSWORD = "https://glowing-02bd61cbeff9.herokuapp.com/users/reset-password";
 
     const otpSection = document.getElementById("otp-section");
     const changePasswordSection = document.getElementById("change-password-section");

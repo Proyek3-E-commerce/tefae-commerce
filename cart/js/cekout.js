@@ -8,7 +8,7 @@ const fetchCartItems = async () => {
         const decoded = JSON.parse(atob(token.split(".")[1]));
         const userId = decoded.user_id;
 
-        const response = await fetch(`https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart?user_id=${userId}`);
+        const response = await fetch(`https://glowing-02bd61cbeff9.herokuapp.com/cart?user_id=${userId}`);
         if (!response.ok) throw new Error("Failed to fetch cart items");
 
         const data = await response.json();
@@ -35,7 +35,7 @@ const renderCartItems = (items) => {
             const discountedPrice = item.price * (1 - discount / 100);
             return `
                 <div class="product-item">
-                    <img src="https://tefae-commerce-2c0fdca4d608.herokuapp.com/${item.image.replace("./", "")}" alt="${item.name}">
+                    <img src="https://glowing-02bd61cbeff9.herokuapp.com/${item.image.replace("./", "")}" alt="${item.name}">
                     <div class="product-info">
                         <h3>${item.name}</h3>
                         <p>Price: <del>Rp.${item.price.toLocaleString()}</del> Rp.${discountedPrice.toLocaleString()}</p>
@@ -91,7 +91,7 @@ const processPayment = async () => {
     const userId = JSON.parse(atob(token.split(".")[1])).user_id;
 
     try {
-        const response = await fetch(`https://tefae-commerce-2c0fdca4d608.herokuapp.com/payment`, {
+        const response = await fetch(`https://glowing-02bd61cbeff9.herokuapp.com/payment`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

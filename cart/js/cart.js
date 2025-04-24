@@ -45,7 +45,7 @@ const renderCartItems = (products) => {
   cartItemsContainer.innerHTML = products
     .map((product) => {
       const imageUrl = product.image
-        ? `https://tefae-commerce-2c0fdca4d608.herokuapp.com/${product.image.replace("./", "")}`
+        ? `https://glowing-02bd61cbeff9.herokuapp.com/${product.image.replace("./", "")}`
         : "./images/default-product.png";
 
       return `
@@ -106,7 +106,7 @@ const updateQuantity = async (productId, delta) => {
     const userId = decoded?.user_id;
     if (!userId) throw new Error("Invalid user ID");
 
-    const response = await fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart/update", {
+    const response = await fetch("https://glowing-02bd61cbeff9.herokuapp.com/cart/update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -170,7 +170,7 @@ const fetchCartItems = async () => {
     const userId = decoded?.user_id;
     if (!userId) throw new Error("Invalid user ID");
 
-    const apiUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart";
+    const apiUrl = "https://glowing-02bd61cbeff9.herokuapp.com/cart";
     console.log(`Fetching cart from: ${apiUrl}?user_id=${userId}`);
 
     const response = await fetch(`${apiUrl}?user_id=${userId}`);
@@ -194,7 +194,7 @@ const removeFromCart = async (productId) => {
 
     const userId = JSON.parse(atob(token.split(".")[1])).user_id;
 
-    const response = await fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart/delete", {
+    const response = await fetch("https://glowing-02bd61cbeff9.herokuapp.com/cart/delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_id: userId, product_id: productId }),

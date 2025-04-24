@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const searchInput = document.getElementById("search-input");
 
-  const API_URL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/categories";
-  const API_SUBCATEGORY_URL = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/categories/sub";
+  const API_URL = "https://glowing-02bd61cbeff9.herokuapp.com/categories";
+  const API_SUBCATEGORY_URL = "https://glowing-02bd61cbeff9.herokuapp.com/categories/sub";
   let categories = [];
 
   const openModal = (modal) => {

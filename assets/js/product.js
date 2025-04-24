@@ -20,7 +20,7 @@ async function fetchProducts(url, containerId) {
     container.innerHTML = products
       .map((product) => {
         const imageUrl = product.image
-          ? `https://tefae-commerce-2c0fdca4d608.herokuapp.com/${product.image.replace("./", "")}`
+          ? `https://glowing-02bd61cbeff9.herokuapp.com/${product.image.replace("./", "")}`
           : "./images/default-product.png";
         const name = product.name || "Unknown Product";
         const price = product.price || 0;
@@ -102,7 +102,7 @@ const addToCart = async (product) => {
       total_price: product.price, // Total harga awal
     };
 
-    const response = await fetch("https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart", {
+    const response = await fetch("https://glowing-02bd61cbeff9.herokuapp.com/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -127,7 +127,7 @@ const addToCart = async (product) => {
 };
 
 // Panggil fungsi untuk mengambil produk
-fetchProducts("https://tefae-commerce-2c0fdca4d608.herokuapp.com/products", "bestsellers-list");
+fetchProducts("https://glowing-02bd61cbeff9.herokuapp.com/products", "bestsellers-list");
 
 // Fungsi untuk mendapatkan jumlah produk di keranjang
 const updateCartCount = async () => {
@@ -154,7 +154,7 @@ const updateCartCount = async () => {
     const userId = decodedToken.user_id;
 
     // Fetch data keranjang dari backend
-    const response = await fetch(`https://tefae-commerce-2c0fdca4d608.herokuapp.com/cart?user_id=${userId}`);
+    const response = await fetch(`https://glowing-02bd61cbeff9.herokuapp.com/cart?user_id=${userId}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch cart data: ${response.statusText}`);
     }

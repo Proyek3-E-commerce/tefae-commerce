@@ -1,4 +1,4 @@
-const apiBaseUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com";
+const apiBaseUrl = "https://glowing-02bd61cbeff9.herokuapp.com";
 let sellerId = "";
 
 document.addEventListener("DOMContentLoaded", async () => {

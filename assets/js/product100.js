@@ -2,7 +2,7 @@
 const authToken = localStorage.getItem('authToken'); 
 
 // Fetch produk dari API
-fetch('https://tefae-commerce-2c0fdca4d608.herokuapp.com/products', {
+fetch('https://glowing-02bd61cbeff9.herokuapp.com/products', {
   method: 'GET',
   headers: {
     'Authorization': `Bearer ${authToken}`

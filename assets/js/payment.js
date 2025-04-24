@@ -18,7 +18,7 @@ document.getElementById('paymentForm').addEventListener('submit', function(event
     console.log('Payment Data:', paymentData);
 
     // Kirim data ke server menggunakan fetch atau AJAX
-    fetch('https://tefae-commerce-2c0fdca4d608.herokuapp.com/payment', {
+    fetch('https://glowing-02bd61cbeff9.herokuapp.com/payment', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

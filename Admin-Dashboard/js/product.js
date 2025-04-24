@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const apiUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/products";
-  const sellersUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/sellers";
-  const categoriesUrl = "https://tefae-commerce-2c0fdca4d608.herokuapp.com/categories";
+  const apiUrl = "https://glowing-02bd61cbeff9.herokuapp.com/products";
+  const sellersUrl = "https://glowing-02bd61cbeff9.herokuapp.com/sellers";
+  const categoriesUrl = "https://glowing-02bd61cbeff9.herokuapp.com/categories";
   const productTable = document.querySelector("#product-table tbody");
   const productForm = document.getElementById("product-form");
   const storeSelect = document.getElementById("store-select");
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
             )?.name || "Unknown Sub-Category";
 
           const imageUrl = product.image
-            ? `https://tefae-commerce-2c0fdca4d608.herokuapp.com/${product.image.replace("./", "")}`
+            ? `https://glowing-02bd61cbeff9.herokuapp.com/${product.image.replace("./", "")}`
             : "./images/default-product.png";
 
           return `
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         // Fetch product details
         const response = await fetch(
-          `https://tefae-commerce-2c0fdca4d608.herokuapp.com/products/${productId}`
+          `https://glowing-02bd61cbeff9.herokuapp.com/products/${productId}`
         );
         const { product, store } = await response.json();
 
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Set image preview
         if (product.image) {
-          editImagePreview.src = `https://tefae-commerce-2c0fdca4d608.herokuapp.com/${product.image.replace("./", "")}`;
+          editImagePreview.src = `https://glowing-02bd61cbeff9.herokuapp.com/${product.image.replace("./", "")}`;
           editImagePreview.classList.remove("hidden");
         }
 
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function populateCategoryDropdown(selectedCategoryId, selectedSubCategoryId) {
     try {
       const categoryResponse = await fetch(
-        "https://tefae-commerce-2c0fdca4d608.herokuapp.com/categories"
+        "https://glowing-02bd61cbeff9.herokuapp.com/categories"
       );
       const { data: categories } = await categoryResponse.json();
 
@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
         const response = await fetch(
-            `https://tefae-commerce-2c0fdca4d608.herokuapp.com/products/${productId}`,
+            `https://glowing-02bd61cbeff9.herokuapp.com/products/${productId}`,
             {
                 method: "PUT",
                 body: formData,
